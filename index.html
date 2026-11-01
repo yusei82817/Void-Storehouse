@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d9f3ff">
+  <meta name="description" content="VOID STOREHOUSE - Horror game">
+  <title>VOID STOREHOUSE</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./main.js" defer></script>
+</head>
+<body>
+  <main class="title-screen">
+    <div class="sun-glow" aria-hidden="true"></div>
+    <div class="cloud cloud-one" aria-hidden="true"></div>
+    <div class="cloud cloud-two" aria-hidden="true"></div>
+    <div class="landscape" aria-hidden="true">
+      <div class="hill hill-back"></div>
+      <div class="hill hill-front"></div>
+      <div class="grass"></div>
+    </div>
+
+    <header class="brand">
+      <p class="eyebrow">A STORY BEYOND THE ORDINARY</p>
+      <h1>VOID <span>STOREHOUSE</span></h1>
+      <p class="subtitle">その場所に、何が眠っているのか。</p>
+    </header>
+
+    <nav class="menu" aria-label="Main menu">
+      <button class="menu-button primary" data-action="new-game">New Game</button>
+      <button class="menu-button" data-action="continue">Continue</button>
+      <button class="menu-button" data-action="save-point">From save point</button>
+      <button class="menu-button" data-action="config">Config</button>
+    </nav>
+
+    <p class="menu-hint" id="menu-hint" aria-live="polite">SELECT YOUR DESTINATION</p>
+    <footer class="footer">© VOID STOREHOUSE PROJECT</footer>
+
+    <section class="config-panel" id="config-panel" aria-label="Configuration" hidden>
+      <div class="config-card">
+        <button class="close-config" id="close-config" aria-label="Close">×</button>
+        <p class="eyebrow">SETTINGS</p>
+        <h2>Config</h2>
+        <label class="volume-row" for="volume">
+          <span>Master volume</span>
+          <output id="volume-value">70%</output>
+        </label>
+        <input id="volume" type="range" min="0" max="100" value="70">
+        <button class="menu-button primary config-close-button" id="config-done">Done</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
