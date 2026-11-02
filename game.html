@@ -65,7 +65,7 @@
     import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js";
 
     const view = document.querySelector("#view");
-    const status = document.querySelector("#status");
+    const statusElement = document.querySelector("#status");
     const errorBox = document.querySelector("#error");
 
     const scene = new THREE.Scene();
@@ -161,11 +161,12 @@
           throw new Error("マップJSONの形式が正しくありません。");
         }
         map.objects.forEach(addMapObject);
-        status((map.mapName || "START ROOM") + " / " + map.objects.length + " OBJECTS");
+        statusElement.textContent = (map.mapName || "START ROOM") + " / " + map.objects.length + " OBJECTS";
       } catch (error) {
         errorBox.style.display = "grid";
         errorBox.textContent = "マップを表示できませんでした。\n" + error.message;
-        status("読み込みエラー");
+        statusElement.textContent = "読み込みエラー";
+        console.error(error);
       }
     }
 
