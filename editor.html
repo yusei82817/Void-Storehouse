@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eaf7ff">
+  <meta name="description" content="VOID STOREHOUSE 3D Map Editor">
+  <title>MAP EDITOR | VOID STOREHOUSE</title>
+  <link rel="stylesheet" href="./editor.css">
+  <script type="module" src="./editor.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="back-link" href="./index.html">← TITLE</a>
+    <div class="brand"><span class="brand-mark">V</span><div><strong>VOID STOREHOUSE</strong><small>3D MAP EDITOR</small></div></div>
+    <div class="top-actions">
+      <button id="load-button" class="button secondary">LOAD JSON</button>
+      <button id="save-button" class="button save">SAVE MAP.JSON</button>
+      <input id="file-input" type="file" accept=".json,application/json" hidden>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="panel left-panel">
+      <div class="panel-heading"><span>01 / CREATE</span><h2>オブジェクト追加</h2></div>
+      <p class="help">配置したい形状を選んで追加。あとから位置や大きさを調整できるよ。</p>
+      <div class="add-grid">
+        <button class="add-button" data-add="box"><span class="shape-icon cube"></span><b>Cube</b><small>立方体</small></button>
+        <button class="add-button" data-add="sphere"><span class="shape-icon sphere"></span><b>Sphere</b><small>球体</small></button>
+        <button class="add-button" data-add="cylinder"><span class="shape-icon cylinder"></span><b>Cylinder</b><small>円柱</small></button>
+        <button class="add-button" data-add="plane"><span class="shape-icon plane"></span><b>Plane</b><small>床・地面</small></button>
+      </div>
+      <div class="section-divider"></div>
+      <div class="panel-heading compact"><span>02 / HIERARCHY</span><h2>オブジェクト一覧</h2></div>
+      <div id="object-list" class="object-list"><p class="empty-list">まだ何もないよ。世界の始まりだね。</p></div>
+      <div class="list-footer"><span id="object-count">0 OBJECTS</span><button id="duplicate-button" class="text-button" disabled>複製</button><button id="delete-button" class="text-button danger" disabled>削除</button></div>
+    </aside>
+
+    <section class="viewport-wrap">
+      <div class="viewport-toolbar">
+        <div><span class="live-dot"></span><b>SCENE VIEW</b><small>左ドラッグ: 回転 / 右ドラッグ: 移動 / ホイール: ズーム</small></div>
+        <div class="view-tools"><button id="reset-view" class="icon-button" title="視点リセット">視点リセット</button><span class="axis-note">Y ↑</span></div>
+      </div>
+      <div id="viewport" class="viewport">
+        <div class="viewport-loading" id="viewport-loading">3D SCENE INITIALIZING...</div>
+      </div>
+      <div class="viewport-footer"><span>WORLD GRID <b>1 UNIT</b></span><span id="selection-status">未選択</span><span>WEBGL / THREE.JS</span></div>
+    </section>
+
+    <aside class="panel right-panel">
+      <div class="panel-heading"><span>03 / INSPECTOR</span><h2>プロパティ</h2></div>
+      <div id="inspector-empty" class="inspector-empty"><span class="cursor-icon">＋</span><b>オブジェクト未選択</b><p>シーン上のオブジェクト、または一覧から選択してね。</p></div>
+      <div id="inspector" hidden>
+        <label class="field-label" for="object-name">NAME</label>
+        <input id="object-name" class="text-input" type="text" maxlength="40">
+        <label class="field-label" for="object-color">COLOR</label>
+        <div class="color-row"><input id="object-color" type="color" value="#8bb8d8"><span id="color-value">#8BB8D8</span></div>
+        <div class="section-divider"></div>
+        <div class="transform-heading"><b>POSITION</b><small>位置</small></div>
+        <div class="axis-fields">
+          <label><span>X</span><input data-transform="position" data-axis="x" type="number" step="0.5"></label>
+          <label><span>Y</span><input data-transform="position" data-axis="y" type="number" step="0.5"></label>
+          <label><span>Z</span><input data-transform="position" data-axis="z" type="number" step="0.5"></label>
+        </div>
+        <div class="transform-heading"><b>ROTATION</b><small>回転 (°)</small></div>
+        <div class="axis-fields">
+          <label><span>X</span><input data-transform="rotation" data-axis="x" type="number" step="15"></label>
+          <label><span>Y</span><input data-transform="rotation" data-axis="y" type="number" step="15"></label>
+          <label><span>Z</span><input data-transform="rotation" data-axis="z" type="number" step="15"></label>
+        </div>
+        <div class="transform-heading"><b>SCALE</b><small>大きさ</small></div>
+        <div class="axis-fields">
+          <label><span>X</span><input data-transform="scale" data-axis="x" type="number" min="0.1" step="0.1"></label>
+          <label><span>Y</span><input data-transform="scale" data-axis="y" type="number" min="0.1" step="0.1"></label>
+          <label><span>Z</span><input data-transform="scale" data-axis="z" type="number" min="0.1" step="0.1"></label>
+        </div>
+        <p class="inspector-tip">数値を変更すると、3Dビューにすぐ反映されるよ。</p>
+      </div>
+      <div class="section-divider"></div>
+      <div class="panel-heading compact"><span>04 / MAP INFO</span><h2>マップ情報</h2></div>
+      <label class="field-label" for="map-name">MAP NAME</label>
+      <input id="map-name" class="text-input" type="text" value="Untitled Map" maxlength="60">
+      <p class="format-note">保存形式: <b>MAP.JSON</b><br>配置したオブジェクトの座標・回転・拡大率・色を保存するよ。</p>
+    </aside>
+  </main>
+  <footer class="statusbar"><span>VOID STOREHOUSE / EDITOR PROTOTYPE</span><span id="status-message">準備完了。まずはオブジェクトを追加してみよう。</span><span>v0.1.0</span></footer>
+</body>
+</html>
