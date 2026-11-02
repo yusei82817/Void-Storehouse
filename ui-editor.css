@@ -49,7 +49,7 @@ button:disabled{opacity:.35;cursor:not-allowed}
 .ui-element.selected{outline:3px solid #35a8d2!important;outline-offset:2px}
 .ui-element.type-text{background:transparent}.ui-element.type-button{justify-content:center;cursor:move}.ui-element.type-panel{background:#ffffff20}.ui-element.type-image{background:#dce9ee}.ui-element.type-input{background:#fff;color:#78909c;border:2px solid #b8cbd5}
 .ui-element img{width:100%;height:100%;object-fit:cover;pointer-events:none}
-.resize-handle{position:absolute;right:-7px;bottom:-7px;width:16px;height:16px;border:2px solid white;border-radius:4px;background:#2699c4;cursor:nwse-resize;display:none}
+.resize-handle{position:absolute;right:0;bottom:0;width:16px;height:16px;border:2px solid white;border-radius:4px;background:#2699c4;cursor:nwse-resize;display:none}
 .ui-element.selected .resize-handle{display:block}
 .inspector-empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 8px;color:#7893a3}
 .empty-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:#edf7fa;color:#54a0bb;font-size:1.5rem;margin-bottom:12px}
