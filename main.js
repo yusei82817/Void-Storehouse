@@ -28,8 +28,8 @@ document.querySelectorAll(".menu-button[data-action]").forEach((button) => {
 
     switch (button.dataset.action) {
       case "new-game":
-        menuHint.textContent = "NEW GAME SELECTED";
-        // ゲーム本編への接続は、ゲーム画面の実装時に追加する。
+        menuHint.textContent = "ENTERING START ROOM...";
+        window.location.href = "./game.html";
         break;
       case "continue":
         menuHint.textContent = "CONTINUE SELECTED";
