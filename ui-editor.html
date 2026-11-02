@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eaf7ff">
+  <meta name="description" content="VOID STOREHOUSE UI Editor">
+  <title>UI EDITOR | VOID STOREHOUSE</title>
+  <link rel="stylesheet" href="./ui-editor.css">
+  <script type="module" src="./ui-editor.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="back-link" href="./index.html">← TITLE</a>
+    <div class="brand"><span class="brand-mark">V</span><div><strong>VOID STOREHOUSE</strong><small>UI EDITOR</small></div></div>
+    <div class="top-actions">
+      <button id="undo-button" class="tool-button" disabled>UNDO</button>
+      <button id="redo-button" class="tool-button" disabled>REDO</button>
+      <button id="preview-button" class="tool-button">PREVIEW</button>
+      <button id="load-button" class="tool-button">LOAD JSON</button>
+      <button id="save-button" class="tool-button save">SAVE UI.JSON</button>
+      <input id="file-input" type="file" accept=".json,application/json" hidden>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="panel left-panel">
+      <div class="panel-heading"><span>01 / COMPONENTS</span><h2>パーツ追加</h2></div>
+      <p class="help">追加したパーツはキャンバス上でドラッグして配置できるよ。</p>
+      <div class="component-grid">
+        <button class="component-button" data-add="text"><span class="component-icon text-icon">T</span><b>Text</b><small>テキスト</small></button>
+        <button class="component-button" data-add="button"><span class="component-icon button-icon">▰</span><b>Button</b><small>ボタン</small></button>
+        <button class="component-button" data-add="panel"><span class="component-icon panel-icon"></span><b>Panel</b><small>背景パネル</small></button>
+        <button class="component-button" data-add="image"><span class="component-icon image-icon">▧</span><b>Image</b><small>画像</small></button>
+        <button class="component-button" data-add="input"><span class="component-icon input-icon">＿</span><b>Input</b><small>入力欄</small></button>
+      </div>
+      <div class="section-divider"></div>
+      <div class="panel-heading compact"><span>02 / HIERARCHY</span><h2>レイヤー</h2></div>
+      <div id="layer-list" class="layer-list"><p class="empty-list">まだパーツがないよ。</p></div>
+      <div class="layer-actions">
+        <button id="up-button" class="mini-button" disabled>前面へ</button>
+        <button id="down-button" class="mini-button" disabled>背面へ</button>
+        <button id="duplicate-button" class="mini-button" disabled>複製</button>
+        <button id="delete-button" class="mini-button danger" disabled>削除</button>
+      </div>
+    </aside>
+
+    <section class="canvas-area">
+      <div class="canvas-toolbar">
+        <div class="canvas-title"><span class="live-dot"></span><b>CANVAS</b><small>1920 × 1080 / 16:9</small></div>
+        <div class="canvas-actions"><span id="zoom-label">FIT</span><button id="clear-selection" class="mini-button">選択解除</button></div>
+      </div>
+      <div class="canvas-stage-wrap" id="canvas-stage-wrap">
+        <div id="canvas-stage" class="canvas-stage" aria-label="UI編集キャンバス"></div>
+      </div>
+      <div class="canvas-footer"><span>LOGICAL SIZE <b>1920 × 1080</b></span><span id="selection-label">未選択</span><span>16:9 CANVAS</span></div>
+    </section>
+
+    <aside class="panel right-panel">
+      <div class="panel-heading"><span>03 / INSPECTOR</span><h2>プロパティ</h2></div>
+      <div id="inspector-empty" class="inspector-empty"><span class="empty-mark">＋</span><b>パーツ未選択</b><p>キャンバスまたはレイヤーからパーツを選択してね。</p></div>
+      <div id="inspector" hidden>
+        <label class="field-label" for="prop-name">NAME</label>
+        <input id="prop-name" class="text-input" type="text" maxlength="50">
+        <label class="field-label" for="prop-content">TEXT / LABEL</label>
+        <textarea id="prop-content" class="text-input content-input" rows="2"></textarea>
+        <div class="section-divider"></div>
+        <div class="field-heading"><b>POSITION</b><small>位置</small></div>
+        <div class="number-grid">
+          <label><span>X</span><input id="prop-x" type="number" step="1"></label>
+          <label><span>Y</span><input id="prop-y" type="number" step="1"></label>
+        </div>
+        <div class="field-heading"><b>SIZE</b><small>サイズ</small></div>
+        <div class="number-grid">
+          <label><span>W</span><input id="prop-w" type="number" min="1" step="1"></label>
+          <label><span>H</span><input id="prop-h" type="number" min="1" step="1"></label>
+        </div>
+        <div class="section-divider"></div>
+        <label class="field-label" for="prop-color">TEXT COLOR</label>
+        <div class="color-row"><input id="prop-color" type="color"><span id="prop-color-value"></span></div>
+        <label class="field-label" for="prop-bg">BACKGROUND</label>
+        <div class="color-row"><input id="prop-bg" type="color"><span id="prop-bg-value"></span></div>
+        <div class="field-heading"><b>STYLE</b><small>表示設定</small></div>
+        <div class="number-grid">
+          <label><span>FONT SIZE</span><input id="prop-font" type="number" min="8" max="240" step="1"></label>
+          <label><span>RADIUS</span><input id="prop-radius" type="number" min="0" max="200" step="1"></label>
+        </div>
+        <label class="field-label" for="prop-align">TEXT ALIGN</label>
+        <select id="prop-align" class="text-input">
+          <option value="left">左</option><option value="center">中央</option><option value="right">右</option>
+        </select>
+        <label class="field-label" for="prop-image">IMAGE URL</label>
+        <input id="prop-image" class="text-input" type="url" placeholder="https://...">
+        <p class="inspector-tip">画像以外のパーツでは、未使用の項目は無視されるよ。</p>
+      </div>
+      <div class="section-divider"></div>
+      <div class="panel-heading compact"><span>04 / DOCUMENT</span><h2>UI情報</h2></div>
+      <label class="field-label" for="document-name">UI NAME</label>
+      <input id="document-name" class="text-input" type="text" value="Untitled UI" maxlength="60">
+      <p class="format-note">保存形式: <b>UI.JSON</b><br>座標は1920×1080の論理座標で保存するよ。</p>
+    </aside>
+  </main>
+  <footer class="statusbar"><span>VOID STOREHOUSE / UI EDITOR</span><span id="status-message">準備完了。左からパーツを追加してね。</span><span>v0.1.0</span></footer>
+</body>
+</html>
