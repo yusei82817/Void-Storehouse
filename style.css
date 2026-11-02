@@ -242,3 +242,17 @@ h1 span { color: #3989aa; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+
+.editor-link {
+  margin-top: 16px;
+  color: #477f97;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(71,127,151,.35);
+  padding: 5px 2px;
+  transition: color .2s ease, border-color .2s ease;
+}
+.editor-link:hover { color: #286b91; border-color: #286b91; }
