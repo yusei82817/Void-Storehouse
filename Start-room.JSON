@@ -1,0 +1,160 @@
+{
+  "format": "VOID_STOREHOUSE_MAP",
+  "version": 1,
+  "mapName": "Start-Room",
+  "createdAt": "2026-11-02T03:57:19.689Z",
+  "editor": "VOID STOREHOUSE 3D MAP EDITOR",
+  "settings": {
+    "unit": "meter",
+    "gridSize": 1
+  },
+  "objects": [
+    {
+      "id": "obj_3",
+      "type": "plane",
+      "name": "Plane 3",
+      "color": "#c7c7c7",
+      "position": {
+        "x": 0,
+        "y": 0.05,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 10,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "id": "obj_4",
+      "type": "box",
+      "name": "Cube 4",
+      "color": "#8bb8d8",
+      "position": {
+        "x": 10,
+        "y": 4.5,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 7.2,
+        "z": 18.3
+      }
+    },
+    {
+      "id": "obj_5",
+      "type": "box",
+      "name": "Cube 4 Copy",
+      "color": "#8bb8d8",
+      "position": {
+        "x": -10,
+        "y": 4.5,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 7.2,
+        "z": 18.3
+      }
+    },
+    {
+      "id": "obj_6",
+      "type": "box",
+      "name": "Cube 4 Copy Copy",
+      "color": "#8bb8d8",
+      "position": {
+        "x": 0,
+        "y": 4.5,
+        "z": -10
+      },
+      "rotation": {
+        "x": 0,
+        "y": 90,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 7.2,
+        "z": 18.3
+      }
+    },
+    {
+      "id": "obj_7",
+      "type": "box",
+      "name": "Cube 4 Copy Copy Copy",
+      "color": "#8bb8d8",
+      "position": {
+        "x": 7.5,
+        "y": 4.5,
+        "z": 10
+      },
+      "rotation": {
+        "x": 0,
+        "y": 90,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 7.2,
+        "z": 6.15
+      }
+    },
+    {
+      "id": "obj_8",
+      "type": "box",
+      "name": "Cube 4 Copy Copy Copy Copy",
+      "color": "#8bb8d8",
+      "position": {
+        "x": -7.5,
+        "y": 4.5,
+        "z": 10
+      },
+      "rotation": {
+        "x": 0,
+        "y": 90,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 7.2,
+        "z": 6.15
+      }
+    },
+    {
+      "id": "obj_9",
+      "type": "plane",
+      "name": "天板",
+      "color": "#839daa",
+      "position": {
+        "x": 0,
+        "y": 8,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 10.5,
+        "y": 14,
+        "z": 10.5
+      }
+    }
+  ]
+}
