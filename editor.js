@@ -73,7 +73,7 @@ function createObject(type, data = {}) {
   const color = data.color || defaultColor;
   const mesh = new THREE.Mesh(geometryFor(type), makeMaterial(color));
   mesh.position.set(data.position?.x ?? 0, data.position?.y ?? (type === 'plane' ? 0.05 : 0.65), data.position?.z ?? 0);
-  mesh.rotation.set(data.rotation?.x ?? 0, data.rotation?.y ?? 0, data.rotation?.z ?? 0);
+  mesh.rotation.set(THREE.MathUtils.degToRad(data.rotation?.x ?? 0), THREE.MathUtils.degToRad(data.rotation?.y ?? 0), THREE.MathUtils.degToRad(data.rotation?.z ?? 0));
   mesh.scale.set(data.scale?.x ?? 1, data.scale?.y ?? 1, data.scale?.z ?? 1);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
@@ -172,7 +172,7 @@ function serializeObject(obj) {
     name: obj.userData.name,
     color: obj.userData.color,
     position: { x: obj.position.x, y: obj.position.y, z: obj.position.z },
-    rotation: { x: obj.rotation.x, y: obj.rotation.y, z: obj.rotation.z },
+    rotation: { x: THREE.MathUtils.radToDeg(obj.rotation.x), y: THREE.MathUtils.radToDeg(obj.rotation.y), z: THREE.MathUtils.radToDeg(obj.rotation.z) },
     scale: { x: obj.scale.x, y: obj.scale.y, z: obj.scale.z }
   };
 }
