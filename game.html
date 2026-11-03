@@ -291,7 +291,7 @@
       direction.y = 0;
       direction.normalize();
 
-      const right = new THREE.Vector3().crossVectors(direction, camera.up).normalize();
+      const right = new THREE.Vector3().crossVectors(camera.up, direction).normalize();
       const move = new THREE.Vector3()
         .addScaledVector(direction, forwardInput)
         .addScaledVector(right, sideInput);
